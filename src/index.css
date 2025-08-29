@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base sharp, clean styles (no rounded corners) */
+:root {
+  --bg: #f9fafb;
+  --fg: #111827;
+  --muted: #6b7280;
+  --primary: #6b7280; /* gray-500 */
+  --primary-600: #6b7280;
+  --primary-700: #4b5563;
+  --accent: #dc2626; /* red-600 for accents */
+  --accent-light: #fca5a5; /* red-300 for light accents */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.container-narrow {
+  max-width: 720px;
+}
+
