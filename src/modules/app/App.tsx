@@ -150,39 +150,79 @@ export function App() {
               </ul>
 
               {/* Footer */}
-              <div className="flex items-center justify-between px-6 py-3 text-sm text-gray-500 border-t border-gray-200 font-light">
-                <div data-testid="remaining-count" className="font-light">
-                  {remaining} items left
-                </div>
-                
-                <div className="flex gap-3">
+              <div className="px-6 py-3 text-sm text-gray-500 border-t border-gray-200 font-light">
+                {/* Desktop layout */}
+                <div className="hidden sm:flex items-center justify-between">
+                  <div data-testid="remaining-count" className="font-light">
+                    {remaining} items left
+                  </div>
+                  
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => setFilter('all')}
+                      className={`px-2 py-1 font-light ${filter === 'all' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      All
+                    </button>
+                    <button
+                      onClick={() => setFilter('active')}
+                      className={`px-2 py-1 font-light ${filter === 'active' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      Active
+                    </button>
+                    <button
+                      onClick={() => setFilter('completed')}
+                      className={`px-2 py-1 font-light ${filter === 'completed' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      Completed
+                    </button>
+                  </div>
+
                   <button
-                    onClick={() => setFilter('all')}
-                    className={`px-2 py-1 font-light ${filter === 'all' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    onClick={() => dispatch({ type: 'clearCompleted' })}
+                    className="hover:underline font-light"
+                    data-testid="clear-completed"
                   >
-                    All
-                  </button>
-                  <button
-                    onClick={() => setFilter('active')}
-                    className={`px-2 py-1 font-light ${filter === 'active' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
-                  >
-                    Active
-                  </button>
-                  <button
-                    onClick={() => setFilter('completed')}
-                    className={`px-2 py-1 font-light ${filter === 'completed' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
-                  >
-                    Completed
+                    Clear completed
                   </button>
                 </div>
 
-                <button
-                  onClick={() => dispatch({ type: 'clearCompleted' })}
-                  className="hover:underline font-light"
-                  data-testid="clear-completed"
-                >
-                  Clear completed
-                </button>
+                {/* Mobile layout */}
+                <div className="sm:hidden space-y-3">
+                  <div className="flex justify-between items-center">
+                    <div data-testid="remaining-count" className="font-light">
+                      {remaining} items left
+                    </div>
+                    <button
+                      onClick={() => dispatch({ type: 'clearCompleted' })}
+                      className="hover:underline font-light"
+                      data-testid="clear-completed"
+                    >
+                      Clear completed
+                    </button>
+                  </div>
+                  
+                  <div className="flex justify-center gap-3">
+                    <button
+                      onClick={() => setFilter('all')}
+                      className={`px-3 py-1 font-light ${filter === 'all' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      All
+                    </button>
+                    <button
+                      onClick={() => setFilter('active')}
+                      className={`px-3 py-1 font-light ${filter === 'active' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      Active
+                    </button>
+                    <button
+                      onClick={() => setFilter('completed')}
+                      className={`px-3 py-1 font-light ${filter === 'completed' ? 'border rounded-md border-red-200 bg-gray-50' : 'hover:underline'}`}
+                    >
+                      Completed
+                    </button>
+                  </div>
+                </div>
               </div>
             </>
           )}
